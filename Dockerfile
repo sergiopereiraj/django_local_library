@@ -1,8 +1,9 @@
-FROM python:3.12.1-alpine3.19
+FROM python:3.8.10-alpine
 
 WORKDIR /app
 
-#RUN apt-get update
+RUN apk update && \
+    apk add --no-cache build-base mariadb-connector-c-dev
 
 COPY ./requirements.txt ./
 
