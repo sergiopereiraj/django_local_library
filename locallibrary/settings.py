@@ -25,13 +25,13 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&psk#na5l=p3q8
 #SECRET_KEY = 'django-insecure-$h&^d+6s^is#h1r2i%g0x($7_w*e_h(k@kvisnky464#07r^s!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = True
+#DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 #for App Runner by aws
-ALLOWED_HOSTS = [".awsapprunner.com"]
+#ALLOWED_HOSTS = [".awsapprunner.com"]
 
 
 # Application definition
@@ -91,13 +91,13 @@ DATABASES = {
 """
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydatabase",
-        "USER": "mydatabaseuser",
-        "PASSWORD": "mypassword",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dblocallibrary',
+        'USER': 'mysuperuser',
+        'PASSWORD': '123456789',
+        'HOST': 'dblocallibrary.cbcgmuiegoas.ap-southeast-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
