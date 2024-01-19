@@ -138,7 +138,7 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+"""
 #add for aws app runner configuration
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -151,10 +151,20 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
+"""
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AWS_ACCESS_KEY_ID = 'AKIAUGBDRAWLCHQTXMET'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'locallibrarydjango'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'ap-southeast-2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
