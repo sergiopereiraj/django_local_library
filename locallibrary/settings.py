@@ -90,15 +90,24 @@ DATABASES = {
     }
 }
 """
+#in orden to Environment variable
+from dotenv import load_dotenv
+load_dotenv()
 
+#for aws ssm
+import boto3
+ssm = boto3.client('ssm')
+DB_PASSWORD = ssm.get_parameter(Name='/path/to/db_password', WithDecryption=True)['Parameter']['Value'] #it's have to modify
+
+#Postgres DB AWS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dblocallibrary',
-        'USER': 'mysuperuser',
-        'PASSWORD': '123456789',
-        'HOST': 'dblocallibrary.cbcgmuiegoas.ap-southeast-2.rds.amazonaws.com',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -161,12 +170,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-AWS_ACCESS_KEY_ID = 'AKIAUGBDRAWLCHQTXMET'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'locallibrarydjango'
-AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'ap-southeast-2'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL =  None
-AWS_S3_VERITY = True
+#S3 bucket
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_SIGNATURE_NAME = os.environ.get('AWS_S3_SIGNATURE_NAME')
+AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+AWS_S3_FILE_OVERWRITE = os.environ.get('AWS_S3_FILE_OVERWRITE')
+AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL')
+AWS_S3_VERIFY = os.environ.get('AWS_S3_VERIFY')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
