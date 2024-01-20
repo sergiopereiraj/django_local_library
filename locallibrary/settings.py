@@ -94,9 +94,14 @@ DATABASES = {
 from dotenv import load_dotenv
 load_dotenv()
 
+#for region
+# Specify the AWS region
+AWS_REGION = 'ap-southeast-2'  # Update with your actual AWS region
+
 #for aws ssm
 import boto3
-ssm = boto3.client('ssm')
+# Create the SSM client
+ssm = boto3.client('ssm', region_name=AWS_REGION)
 DB_NAME = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_name')['Parameter']['Value']
 DB_USER = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_user')['Parameter']['Value']
 DB_PASSWORD = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_password', WithDecryption=True)['Parameter']['Value']
