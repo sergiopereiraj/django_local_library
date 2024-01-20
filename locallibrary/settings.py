@@ -97,7 +97,11 @@ load_dotenv()
 #for aws ssm
 import boto3
 ssm = boto3.client('ssm')
-DB_PASSWORD = ssm.get_parameter(Name='/path/to/db_password', WithDecryption=True)['Parameter']['Value'] #it's have to modify
+DB_NAME = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_name')['Parameter']['Value']
+DB_USER = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_user')['Parameter']['Value']
+DB_PASSWORD = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_password', WithDecryption=True)['Parameter']['Value']
+DB_HOST = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_host')['Parameter']['Value']
+DB_PORT = ssm.get_parameter(Name='/locallibrary/dbpostgres/db_port')['Parameter']['Value']
 
 #Postgres DB AWS
 DATABASES = {
