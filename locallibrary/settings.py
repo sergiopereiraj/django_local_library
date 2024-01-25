@@ -29,7 +29,7 @@ DEBUG = True
 #DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 #for App Runner by aws
 #ALLOWED_HOSTS = [".awsapprunner.com"]
 
