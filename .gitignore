@@ -169,3 +169,7 @@ cython_debug/
 *.pyc
 media
 staticfiles
+
+#
+apprunner.yaml
+startup.sh
